@@ -4,6 +4,11 @@ import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import { useAuthStore } from "~/lib/auth";
 
+export const meta = () => ([
+    { title: "Upload Resume - Resumind" },
+    { name: "description", content: "Upload your resume and get instant AI-powered feedback. Check ATS scores, tone, and content analysis." },
+]);
+
 const Upload = () => {
   const { user, isLoading: authLoading } = useAuthStore();
   const [file, setFile] = useState<File | null>(null);

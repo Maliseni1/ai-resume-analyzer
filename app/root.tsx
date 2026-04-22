@@ -49,6 +49,16 @@ export default function App() {
   return <Outlet />;
 }
 
+export const meta: Route.MetaFunction = () => [
+  { title: "Resumind - AI Resume Analyzer" },
+  { name: "description", content: "Get AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job." },
+  { name: "keywords", content: "resume, AI, resume analyzer, ATS, job application, career" },
+  { property: "og:title", content: "Resumind - AI Resume Analyzer" },
+  { property: "og:description", content: "Get AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job." },
+  { property: "og:type", content: "website" },
+  { name: "twitter:card", content: "summary_large_image" },
+];
+
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
