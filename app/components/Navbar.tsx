@@ -3,7 +3,7 @@ import { useAuthStore } from "~/lib/auth";
 import { useEffect } from "react";
 
 const Navbar = () => {
-    const { user, isLoading, checkAuthStatus, signOut } = useAuthStore();
+    const { user, checkAuthStatus } = useAuthStore();
 
     useEffect(() => {
         checkAuthStatus();
@@ -15,16 +15,14 @@ const Navbar = () => {
                 <p className="text-2xl font-bold text-gradient">RESUMIND</p>
             </Link>
             <div className="flex items-center gap-4">
-                {isLoading ? (
-                    <span className="text-gray-400">Loading...</span>
-                ) : user ? (
+                <Link to="/" className="text-gray-600 hover:text-gray-900">
+                    Home
+                </Link>
+                {user ? (
                     <>
                         <Link to="/dashboard" className="text-gray-600 hover:text-gray-900">
                             Dashboard
                         </Link>
-                        <button onClick={signOut} className="secondary-button">
-                            Sign Out
-                        </button>
                     </>
                 ) : (
                     <>
