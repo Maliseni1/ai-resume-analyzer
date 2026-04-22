@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
 import {resumes} from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
 import {useAuthStore} from "~/lib/auth";
@@ -30,7 +31,8 @@ export default function Dashboard() {
 
     const showTrialExpired = trialDaysLeft === 0;
 
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return (
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
       <Navbar />
       {showTrialExpired && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-center">
@@ -42,7 +44,7 @@ export default function Dashboard() {
           Your free trial ends tomorrow! <Link to="/subscribe" className="underline font-semibold">Subscribe now</Link> to continue.
         </div>
       )}
-      <section className="main-section">
+      <section className="main-section flex-1">
         <div className="page-heading py-16">
             <h1>
                 Track Your Applications & Resume Ratings
@@ -58,5 +60,7 @@ export default function Dashboard() {
           </div>
       )}
       </section>
-  </main>
+      <Footer />
+    </main>
+  );
 }
