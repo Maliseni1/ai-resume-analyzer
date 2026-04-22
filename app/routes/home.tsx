@@ -1,50 +1,57 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
-import {resumes} from "../../constants";
-import ResumeCard from "~/components/ResumeCard";
-import {useAuthStore} from "~/lib/auth";
-import {useLocation, useNavigate} from "react-router";
-import {useEffect} from "react";
+import Footer from "~/components/Footer";
+import { Link } from "react-router";
 
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind" },
+    { title: "Resumind - AI Resume Analyzer" },
     { name: "description", content: "Smart Feedback for your dream job!" },
   ];
 }
 
 export default function Home() {
-    const { user, isLoading, checkAuthStatus } = useAuthStore();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    useEffect(() => {
-        if (!isLoading && !user) {
-            navigate('/auth?next=/');
-        }
-    }, [user, isLoading, navigate]);
-
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return (
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
       <Navbar />
-      <section className="main-section">
+      <section className="main-section flex-1">
         <div className="page-heading py-16">
-            <h1>
-                Track Your Applications & Resume Ratings
-            </h1>
-            <h2>Review your submissions and check AI-powered feedback.</h2>
+          <h1>
+            AI-Powered Resume Analysis
+          </h1>
+          <h2>Get instant feedback on your resume and land your dream job.</h2>
         </div>
 
-      {resumes.length > 0 && (
-          <div className="resumes-section">
-              {resumes.map((resume) => (
-                  <ResumeCard key={resume.id} resume={resume}/>
-              ))}
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="feature-card">
+              <h3>ATS Score</h3>
+              <p>Check how well your resume passes Applicant Tracking Systems</p>
+            </div>
+            <div className="feature-card">
+              <h3>Tone & Style</h3>
+              <p>Ensure your resume has the right professional tone</p>
+            </div>
+            <div className="feature-card">
+              <h3>Content Analysis</h3>
+              <p>Get suggestions to improve your resume content</p>
+            </div>
+            <div className="feature-card">
+              <h3>Skill Matching</h3>
+              <p>See how your skills match the job requirements</p>
+            </div>
           </div>
-      )}
+
+          <div className="text-center mt-12">
+            <Link to="/upload" className="primary-button text-lg px-8 py-4">
+              Get Started Free - No Payment Required
+            </Link>
+            <p className="text-gray-500 mt-4">3-day free trial, no credit card needed</p>
+          </div>
+        </div>
       </section>
-  </main>
+      <Footer />
+    </main>
+  );
 }

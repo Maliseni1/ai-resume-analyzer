@@ -80,6 +80,15 @@ form {
     .page-heading {
         @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
     }
+    .feature-card {
+        @apply bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow;
+        h3 {
+            @apply text-xl font-semibold mb-2;
+        }
+        p {
+            @apply text-gray-600;
+        }
+    }
     .resumes-section {
         @apply flex flex-wrap max-md:flex-col max-md:gap-4 gap-6 items-start max-md:items-center w-full max-w-[1850px] justify-evenly;
     }
