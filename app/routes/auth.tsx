@@ -11,11 +11,12 @@ const Auth = () => {
     const { user, isLoading, signIn, signUp, signInWithOAuth, signOut, checkAuthStatus } = useAuthStore();
     const location = useLocation();
     const next = new URLSearchParams(location.search).get('next') ?? '/';
+    const mode = new URLSearchParams(location.search).get('mode') ?? 'signup';
     const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isSignUp, setIsSignUp] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(mode === 'signup');
     const [error, setError] = useState<string | null>(null);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
 

@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router";
 import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
 import ScoreCircle from "~/components/ScoreCircle";
 import { resumes } from "../../constants";
 
@@ -9,9 +10,9 @@ const Resume = () => {
 
   if (!resume) {
     return (
-      <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
+      <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
         <Navbar />
-        <section className="main-section py-24 text-center">
+        <section className="main-section py-24 text-center flex-1">
           <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
             <h1>Resume not found</h1>
             <p className="text-gray-500 mt-4">We couldn't find the resume you're looking for.</p>
@@ -20,6 +21,7 @@ const Resume = () => {
             </Link>
           </div>
         </section>
+        <Footer />
       </main>
     );
   }
@@ -34,9 +36,9 @@ const Resume = () => {
   ];
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
       <Navbar />
-      <section className="main-section py-16">
+      <section className="main-section py-16 flex-1">
         <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-start">
           <div className="space-y-6">
             <div className="flex flex-col gap-3">
@@ -81,7 +83,7 @@ const Resume = () => {
                 Upload a new resume
               </Link>
               <Link to="/" className="mt-4 block text-center text-blue-600 underline">
-                Back to dashboard
+                Back to home
               </Link>
             </div>
 
@@ -94,6 +96,7 @@ const Resume = () => {
           </aside>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };
