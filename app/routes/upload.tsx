@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
 import { useAuthStore } from "~/lib/auth";
 
 const Upload = () => {
@@ -31,9 +32,9 @@ const Upload = () => {
   };
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
       <Navbar />
-      <section className="main-section">
+      <section className="main-section flex-1">
         <div className="page-heading py-16">
           <h1>Upload a Resume</h1>
           <h2>Drop your resume and let AI help you review it.</h2>
@@ -70,6 +71,7 @@ const Upload = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };
