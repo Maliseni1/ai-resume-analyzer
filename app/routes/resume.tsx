@@ -4,6 +4,12 @@ import Footer from "~/components/Footer";
 import ScoreCircle from "~/components/ScoreCircle";
 import { resumes } from "../../constants";
 
+export const meta = () => ([
+    { title: "Resume Analysis - Resumind" },
+    { name: "description", content: "View detailed AI feedback on your resume. See ATS scores, tone analysis, content tips, and skill matching." },
+    { name: "robots", content: "noindex" },
+]);
+
 const Resume = () => {
   const params = useParams();
   const resume = resumes.find((item) => item.id === params.id);
