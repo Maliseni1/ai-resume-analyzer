@@ -6,8 +6,11 @@ import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind - AI Resume Analyzer" },
-    { name: "description", content: "Smart Feedback for your dream job!" },
+    { title: "Resumind - AI Resume Analyzer | Free 3-Day Trial" },
+    { name: "description", content: "Get instant AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job. Start your free 3-day trial today!" },
+    { name: "keywords", content: "resume analyzer, AI resume review, ATS score, job application, resume feedback" },
+    { property: "og:title", content: "Resumind - AI Resume Analyzer" },
+    { property: "og:description", content: "Get instant AI-powered feedback on your resume. Start your free 3-day trial!" },
   ];
 }
 

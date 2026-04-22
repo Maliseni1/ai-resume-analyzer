@@ -10,8 +10,9 @@ import {useEffect} from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind - Dashboard" },
-    { name: "description", content: "Your resume dashboard" },
+    { title: "Dashboard - Resumind" },
+    { name: "description", content: "View and manage your resume analysis results. Track your ATS scores and improvement tips." },
+    { name: "robots", content: "noindex" },
   ];
 }
 

@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
 
 export const meta = () => ([
-    { title: 'Resumind | Sign Up' },
+    { title: 'Sign Up - Resumind' },
+    { name: "description", content: "Create your free Resumind account and get 3 days of AI-powered resume analysis. No credit card required." },
+    { name: "robots", content: "noindex" },
 ])
 
 const SignUp = () => {
