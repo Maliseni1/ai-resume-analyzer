@@ -42,7 +42,10 @@ const Upload = () => {
 
         <div className="gradient-border shadow-lg p-8 bg-white rounded-3xl max-w-3xl mx-auto">
           {!user ? (
-            <p className="text-center text-gray-500">Please sign in to upload a resume.</p>
+            <div className="text-center">
+              <p className="text-gray-500 mb-4">Please sign in to upload a resume.</p>
+              <Link to="/signup" className="primary-button inline-block">Sign Up Free</Link>
+            </div>
           ) : (
             <form className="flex flex-col gap-6" onSubmit={handleUpload}>
               <label className="flex flex-col gap-2">

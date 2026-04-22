@@ -44,7 +44,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/upload" className="primary-button text-lg px-8 py-4">
+            <Link to="/signup" className="primary-button text-lg px-8 py-4">
               Get Started Free - No Payment Required
             </Link>
             <p className="text-gray-500 mt-4">3-day free trial, no credit card needed</p>

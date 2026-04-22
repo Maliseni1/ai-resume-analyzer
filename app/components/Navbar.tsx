@@ -26,10 +26,10 @@ const Navbar = () => {
                     </>
                 ) : (
                     <>
-                        <Link to="/auth?mode=signin" className="text-gray-600 hover:text-gray-900">
+                        <Link to="/signin" className="text-gray-600 hover:text-gray-900">
                             Sign In
                         </Link>
-                        <Link to="/auth?mode=signup" className="primary-button w-fit">
+                        <Link to="/signup" className="primary-button w-fit">
                             Sign Up
                         </Link>
                     </>
