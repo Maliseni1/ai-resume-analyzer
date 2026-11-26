@@ -11,7 +11,7 @@ export const meta = () => ([
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="mt-8">
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <div className="text-gray-600 space-y-3">{children}</div>
+        <div className="text-ink-soft space-y-3">{children}</div>
     </div>
 );
 
@@ -22,12 +22,12 @@ const Terms = () => {
             <section className="main-section flex-1">
                 <div className="page-heading py-10">
                     <h1 className="text-4xl">Terms of Service</h1>
-                    <p className="text-gray-500">Last updated: November 26, 2026</p>
+                    <p className="text-ink-soft">Last updated: November 26, 2026</p>
                 </div>
 
                 <div className="gradient-border shadow-lg max-w-3xl mx-auto w-full">
-                    <div className="bg-white rounded-2xl p-8">
-                        <p className="text-gray-600">
+                    <div className="bg-surface rounded-2xl p-8">
+                        <p className="text-ink-soft">
                             These Terms govern your use of Resumind, a product operated by Chiza Labs.
                             By creating an account or using the service, you agree to these Terms.
                         </p>
@@ -97,7 +97,7 @@ const Terms = () => {
                             </p>
                         </Section>
 
-                        <p className="text-xs text-gray-400 mt-10 border-t border-gray-100 pt-4">
+                        <p className="text-xs text-ink-soft mt-10 border-t border-line pt-4">
                             This is a template agreement intended for an early-stage, free product. Chiza
                             Labs has not had it reviewed by legal counsel. If you rely on these Terms for
                             a production or paid launch, have them reviewed by a qualified professional

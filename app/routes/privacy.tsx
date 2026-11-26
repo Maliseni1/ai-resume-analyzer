@@ -11,7 +11,7 @@ export const meta = () => ([
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="mt-8">
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <div className="text-gray-600 space-y-3">{children}</div>
+        <div className="text-ink-soft space-y-3">{children}</div>
     </div>
 );
 
@@ -22,12 +22,12 @@ const Privacy = () => {
             <section className="main-section flex-1">
                 <div className="page-heading py-10">
                     <h1 className="text-4xl">Privacy Policy</h1>
-                    <p className="text-gray-500">Last updated: November 26, 2026</p>
+                    <p className="text-ink-soft">Last updated: November 26, 2026</p>
                 </div>
 
                 <div className="gradient-border shadow-lg max-w-3xl mx-auto w-full">
-                    <div className="bg-white rounded-2xl p-8">
-                        <p className="text-gray-600">
+                    <div className="bg-surface rounded-2xl p-8">
+                        <p className="text-ink-soft">
                             Resumind ("we", "us", "our") is operated by Chiza Labs. This policy explains
                             what personal data we collect when you use Resumind, why we collect it, and
                             how you can control it.
@@ -104,7 +104,7 @@ const Privacy = () => {
                             </p>
                         </Section>
 
-                        <p className="text-xs text-gray-400 mt-10 border-t border-gray-100 pt-4">
+                        <p className="text-xs text-ink-soft mt-10 border-t border-line pt-4">
                             This is a template policy intended for an early-stage, free product. Chiza
                             Labs has not had it reviewed by legal counsel. If you rely on this policy for
                             a production or paid launch, have it reviewed by a qualified professional for

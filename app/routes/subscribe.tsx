@@ -13,9 +13,9 @@ const Subscribe = () => {
         <main className="min-h-screen flex flex-col">
             <Navbar />
             <section className="main-section flex-1 flex items-center justify-center">
-                <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto text-center">
+                <div className="gradient-border shadow-lg bg-surface rounded-3xl p-10 max-w-xl mx-auto text-center">
                     <h1>Paid plans are coming soon</h1>
-                    <p className="text-gray-500 mt-4">
+                    <p className="text-ink-soft mt-4">
                         We're still building out subscriptions. In the meantime, reach out to{" "}
                         <a href="mailto:hello@chizalabs.com" className="link">
                             hello@chizalabs.com

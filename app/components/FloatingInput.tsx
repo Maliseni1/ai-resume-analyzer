@@ -45,8 +45,8 @@ const FloatingInput = ({ id, label, type = "text", value, onChange, required, mi
             <label
                 htmlFor={id}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-soft text-base transition-all duration-200 pointer-events-none
-                    peer-focus:top-0 peer-focus:left-3 peer-focus:px-1 peer-focus:text-xs peer-focus:text-navy peer-focus:bg-white
-                    peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-3 peer-[&:not(:placeholder-shown)]:px-1 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-navy peer-[&:not(:placeholder-shown)]:bg-white"
+                    peer-focus:top-0 peer-focus:left-3 peer-focus:px-1 peer-focus:text-xs peer-focus:text-link peer-focus:bg-surface
+                    peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:left-3 peer-[&:not(:placeholder-shown)]:px-1 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-link peer-[&:not(:placeholder-shown)]:bg-surface"
             >
                 {label}
             </label>
