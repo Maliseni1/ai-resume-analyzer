@@ -68,7 +68,7 @@ const Resume = () => {
 
     if (loading) {
         return (
-            <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+            <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
                     <p className="text-gray-500">Loading...</p>
@@ -80,7 +80,7 @@ const Resume = () => {
 
     if (!resume) {
         return (
-            <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+            <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
                     <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
@@ -98,7 +98,7 @@ const Resume = () => {
 
     if (resume.status === "pending" || resume.status === "processing") {
         return (
-            <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+            <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
                     <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
@@ -113,7 +113,7 @@ const Resume = () => {
 
     if (resume.status === "failed" || !resume.feedback) {
         return (
-            <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+            <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
                     <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
@@ -139,16 +139,16 @@ const Resume = () => {
     ];
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <Navbar />
             <section className="main-section py-16 flex-1">
                 <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[1.2fr_0.8fr] items-start">
                     <div className="space-y-6">
                         <div className="flex flex-col gap-3">
-                            <div className="flex items-center justify-between gap-4">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                 <div>
                                     <p className="text-sm uppercase tracking-[0.3em] text-gray-500">Resume Review</p>
-                                    <h1 className="text-4xl font-bold">{companyName || "Untitled"}</h1>
+                                    <h1 className="text-3xl sm:text-4xl font-bold break-words">{companyName || "Untitled"}</h1>
                                     <p className="text-lg text-gray-600">{jobTitle}</p>
                                 </div>
                                 <ScoreCircle score={feedback.overallScore} />
@@ -187,7 +187,7 @@ const Resume = () => {
                             <Link to="/upload" className="primary-button w-full text-center">
                                 Upload a new resume
                             </Link>
-                            <Link to="/dashboard" className="mt-4 block text-center text-blue-600 underline">
+                            <Link to="/dashboard" className="mt-4 block text-center link">
                                 Back to dashboard
                             </Link>
                         </div>
