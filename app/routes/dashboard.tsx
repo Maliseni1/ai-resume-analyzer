@@ -48,12 +48,12 @@ export default function Dashboard() {
     <main className="min-h-screen flex flex-col">
       <Navbar />
       {showTrialExpired && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-center">
+        <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 text-center">
           Your free trial has ended. <Link to="/subscribe" className="underline font-semibold">Subscribe now</Link> to continue.
         </div>
       )}
       {!showTrialExpired && trialDaysLeft !== null && trialDaysLeft <= 1 && (
-        <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 text-center">
+        <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 text-yellow-700 dark:text-yellow-300 px-4 py-3 text-center">
           Your free trial ends tomorrow! <Link to="/subscribe" className="underline font-semibold">Subscribe now</Link> to continue.
         </div>
       )}
@@ -66,7 +66,7 @@ export default function Dashboard() {
         </div>
 
       {resumesLoading ? (
-          <p className="text-gray-500">Loading your resumes...</p>
+          <p className="text-ink-soft">Loading your resumes...</p>
       ) : resumes.length > 0 ? (
           <div className="resumes-section">
               {resumes.map((resume) => (
@@ -75,7 +75,7 @@ export default function Dashboard() {
           </div>
       ) : (
           <div className="text-center">
-              <p className="text-gray-500 mb-4">You haven't uploaded a resume yet.</p>
+              <p className="text-ink-soft mb-4">You haven't uploaded a resume yet.</p>
               <Link to="/upload" className="primary-button inline-block">Upload your first resume</Link>
           </div>
       )}

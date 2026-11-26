@@ -50,7 +50,7 @@ export default function Home() {
             <Link to="/signup" className="primary-button text-lg px-8 py-4">
               Get Started Free - No Payment Required
             </Link>
-            <p className="text-gray-500 mt-4">3-day free trial, no credit card needed</p>
+            <p className="text-ink-soft mt-4">3-day free trial, no credit card needed</p>
           </div>
         </div>
       </section>

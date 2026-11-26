@@ -135,12 +135,12 @@ const Upload = () => {
                     <h2>Drop your resume and let AI help you review it.</h2>
                 </div>
 
-                <div className="gradient-border shadow-lg p-8 bg-white rounded-3xl max-w-3xl mx-auto">
+                <div className="gradient-border shadow-lg p-8 bg-surface rounded-3xl max-w-3xl mx-auto">
                     {authLoading ? (
-                        <p className="text-center text-gray-500">Loading...</p>
+                        <p className="text-center text-ink-soft">Loading...</p>
                     ) : !user ? (
                         <div className="text-center">
-                            <p className="text-gray-500 mb-4">Please sign in to upload a resume.</p>
+                            <p className="text-ink-soft mb-4">Please sign in to upload a resume.</p>
                             <Link to="/signup" className="primary-button inline-block">Sign Up Free</Link>
                         </div>
                     ) : (
@@ -192,7 +192,7 @@ const Upload = () => {
                                 {isSubmitting ? "Working..." : "Upload Resume"}
                             </button>
 
-                            {status && <p className="text-sm text-gray-600">{status}</p>}
+                            {status && <p className="text-sm text-ink-soft">{status}</p>}
                             {error && <p className="text-sm text-red-500">{error}</p>}
                         </form>
                     )}
