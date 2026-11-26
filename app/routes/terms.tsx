@@ -17,7 +17,7 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 
 const Terms = () => {
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <Navbar />
             <section className="main-section flex-1">
                 <div className="page-heading py-10">
@@ -63,7 +63,7 @@ const Terms = () => {
                             <p>You retain ownership of the resumes and content you upload. You grant us a
                             limited license to store and process that content solely to provide the
                             service to you, as described in our{" "}
-                                <Link to="/privacy" className="text-blue-600 underline">Privacy Policy</Link>.
+                                <Link to="/privacy" className="link">Privacy Policy</Link>.
                             </p>
                         </Section>
 
@@ -91,7 +91,7 @@ const Terms = () => {
 
                         <Section title="10. Contact">
                             <p>Questions about these Terms? Email{" "}
-                                <a href="mailto:hello@chizalabs.com" className="text-blue-600 underline">
+                                <a href="mailto:hello@chizalabs.com" className="link">
                                     hello@chizalabs.com
                                 </a>.
                             </p>
@@ -106,7 +106,7 @@ const Terms = () => {
                     </div>
                 </div>
 
-                <Link to="/privacy" className="text-blue-600 underline mt-6">
+                <Link to="/privacy" className="link mt-6">
                     Read our Privacy Policy
                 </Link>
             </section>

@@ -10,14 +10,14 @@ export const meta = () => ([
 
 const Subscribe = () => {
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <Navbar />
             <section className="main-section flex-1 flex items-center justify-center">
                 <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto text-center">
                     <h1>Paid plans are coming soon</h1>
                     <p className="text-gray-500 mt-4">
                         We're still building out subscriptions. In the meantime, reach out to{" "}
-                        <a href="mailto:hello@chizalabs.com" className="text-blue-600 underline">
+                        <a href="mailto:hello@chizalabs.com" className="link">
                             hello@chizalabs.com
                         </a>{" "}
                         if you'd like continued access.

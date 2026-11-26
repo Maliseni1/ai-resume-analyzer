@@ -16,7 +16,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Navbar />
       <section className="main-section flex-1">
         <div className="page-heading py-16">
