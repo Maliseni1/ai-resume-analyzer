@@ -10,6 +10,7 @@ export default [
     route("/resume/:id", "routes/resume.tsx"),
     route("/subscribe", "routes/subscribe.tsx"),
     route("/api/analyze", "routes/api.analyze.ts"),
+    route("/api/extract-job", "routes/api.extract-job.ts"),
     route("/privacy", "routes/privacy.tsx"),
     route("/terms", "routes/terms.tsx"),
 ] satisfies RouteConfig;
