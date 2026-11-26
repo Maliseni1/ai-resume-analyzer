@@ -44,7 +44,7 @@ const AuthCallback = () => {
     }, []);
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex items-center justify-center">
+        <main className="min-h-screen flex items-center justify-center">
             <div className="text-center">
                 <p className="text-xl">{status}</p>
             </div>
