@@ -72,7 +72,7 @@ const SignUp = () => {
 
             <div className="flex-1 flex items-center justify-center py-16 px-4">
                 <div className="gradient-border shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <section className="flex flex-col gap-6 bg-white rounded-2xl p-6 sm:p-10 max-w-md w-full">
+                    <section className="flex flex-col gap-6 bg-surface rounded-2xl p-6 sm:p-10 max-w-md w-full">
                         <div className="flex flex-col items-center gap-2 text-center">
                             <h1>Create Account</h1>
                             <h2>Start your 3-day free trial</h2>
@@ -93,9 +93,9 @@ const SignUp = () => {
                         </button>
 
                         <div className="flex items-center gap-4">
-                            <div className="flex-1 h-px bg-gray-300" />
-                            <span className="text-sm text-gray-500">or</span>
-                            <div className="flex-1 h-px bg-gray-300" />
+                            <div className="flex-1 h-px bg-line" />
+                            <span className="text-sm text-ink-soft">or</span>
+                            <div className="flex-1 h-px bg-line" />
                         </div>
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -133,10 +133,10 @@ const SignUp = () => {
                             </button>
                         </form>
 
-                        <p className="text-center text-sm text-gray-500">
+                        <p className="text-center text-sm text-ink-soft">
                             Already have an account? <Link to="/signin" className="link">Sign in</Link>
                         </p>
-                        <p className="text-center text-xs text-gray-400">
+                        <p className="text-center text-xs text-ink-soft">
                             By signing up, you agree to our{" "}
                             <Link to="/terms" className="link">Terms of Service</Link>{" "}
                             and{" "}

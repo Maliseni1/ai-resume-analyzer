@@ -6,10 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { useEffect, useState } from "react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import { inject } from "@vercel/analytics";
+import Splash from "~/components/Splash";
 
 inject();
 
@@ -34,6 +36,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem("theme")==="dark"){document.documentElement.classList.add("dark");}}catch(e){}})();`,
+          }}
+        />
       </head>
 
       <body>
@@ -46,7 +53,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const [splashVisible, setSplashVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSplashVisible(false), 700);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      <Splash visible={splashVisible} />
+      <Outlet />
+    </>
+  );
 }
 
 export const meta: Route.MetaFunction = () => [

@@ -2,6 +2,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Class-based dark mode: toggled via .dark on <html> (see app/lib/theme.ts),
+   not just prefers-color-scheme, so the navbar toggle can override the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -15,7 +19,12 @@
     --color-gold: #cc9a44;
     --color-gold-dark: #b3862e;
     --color-bg: #f4f5f7;
+    --color-surface: #ffffff;
     --color-line: #dce1e8;
+    /* Link text needs its own token: navy itself is too dark to read as
+       text on a dark background, but it must stay navy (not gold) in
+       light mode so gold stays reserved for standout accents only. */
+    --color-link: #16233e;
 
     --color-badge-green: #d5faf1;
     --color-badge-red: #f9e3e2;
@@ -26,9 +35,18 @@
     --color-badge-yellow-text: #73321b;
 }
 
+.dark {
+    --color-ink: #e8eaf0;
+    --color-ink-soft: #9aa5bd;
+    --color-bg: #0f1420;
+    --color-surface: #182033;
+    --color-line: #2a3348;
+    --color-link: #93abdd;
+}
+
 html,
 body {
-    @apply bg-bg;
+    @apply bg-bg transition-colors duration-300;
 }
 
 main {
@@ -46,11 +64,11 @@ label {
     @apply text-ink-soft;
 }
 input {
-    @apply w-full p-4 border border-line rounded-2xl focus:outline-none focus:border-navy/40 bg-white transition-colors;
+    @apply w-full p-4 border border-line rounded-2xl focus:outline-none focus:border-navy/40 bg-surface text-ink transition-colors;
 }
 
 textarea {
-    @apply w-full p-4 border border-line rounded-2xl focus:outline-none focus:border-navy/40 bg-white transition-colors;
+    @apply w-full p-4 border border-line rounded-2xl focus:outline-none focus:border-navy/40 bg-surface text-ink transition-colors;
 }
 
 form {
@@ -59,16 +77,16 @@ form {
 
 @layer components {
     .link {
-        @apply text-navy underline hover:text-navy-dark transition-colors;
+        @apply text-link underline hover:opacity-75 transition-opacity;
     }
     .gradient-border {
-        @apply bg-white border border-line rounded-2xl p-4;
+        @apply bg-surface border border-line rounded-2xl p-4;
     }
     .primary-button {
         @apply bg-navy text-white rounded-full px-4 py-2 cursor-pointer w-full font-semibold hover:bg-navy-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-navy;
     }
     .secondary-button {
-        @apply bg-white border-2 border-line text-ink rounded-full px-4 py-2 cursor-pointer w-full font-semibold hover:border-navy/40 hover:bg-bg transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+        @apply bg-surface border-2 border-line text-ink rounded-full px-4 py-2 cursor-pointer w-full font-semibold hover:border-navy/40 hover:bg-bg transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
     }
     .navbar-cta {
         @apply bg-gold text-navy-dark rounded-full px-4 py-2 font-semibold hover:bg-gold-dark transition-colors w-fit;
@@ -101,7 +119,7 @@ form {
         @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
     }
     .feature-card {
-        @apply bg-white rounded-2xl p-6 border border-line shadow-sm hover:shadow-md transition-shadow;
+        @apply bg-surface rounded-2xl p-6 border border-line shadow-sm hover:shadow-md transition-shadow;
         h3 {
             @apply text-xl font-semibold mb-2 text-ink;
         }
@@ -114,7 +132,7 @@ form {
     }
 
     .resume-card {
-        @apply flex flex-col gap-8 h-[560px] w-full max-w-[350px] lg:w-[430px] xl:w-[490px] bg-white border border-line rounded-2xl p-4;
+        @apply flex flex-col gap-8 h-[560px] w-full max-w-[350px] lg:w-[430px] xl:w-[490px] bg-surface border border-line rounded-2xl p-4;
     }
 
     .resume-card-header {
@@ -138,7 +156,7 @@ form {
     }
 
     .uplader-drag-area {
-        @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white border border-line rounded-2xl min-h-[208px];
+        @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-surface border border-line rounded-2xl min-h-[208px];
     }
     .uploader-selected-file {
         @apply flex items-center justify-between p-3 bg-bg rounded-2xl;
