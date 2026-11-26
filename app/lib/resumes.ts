@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-interface ResumeRow {
+export interface ResumeRow {
     id: string;
     user_id: string;
     company_name: string | null;
@@ -13,7 +13,7 @@ interface ResumeRow {
     created_at: string;
 }
 
-function mapRow(row: ResumeRow): Resume {
+export function mapRow(row: ResumeRow): Resume {
     return {
         id: row.id,
         companyName: row.company_name ?? undefined,
