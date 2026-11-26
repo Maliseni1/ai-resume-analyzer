@@ -71,7 +71,7 @@ const Resume = () => {
             <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
-                    <p className="text-gray-500">Loading...</p>
+                    <p className="text-ink-soft">Loading...</p>
                 </section>
                 <Footer />
             </main>
@@ -83,9 +83,9 @@ const Resume = () => {
             <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
-                    <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
+                    <div className="gradient-border shadow-lg bg-surface rounded-3xl p-10 max-w-xl mx-auto">
                         <h1>Resume not found</h1>
-                        <p className="text-gray-500 mt-4">We couldn't find the resume you're looking for.</p>
+                        <p className="text-ink-soft mt-4">We couldn't find the resume you're looking for.</p>
                         <Link to="/dashboard" className="primary-button mt-6 inline-block">
                             Back to dashboard
                         </Link>
@@ -101,9 +101,9 @@ const Resume = () => {
             <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
-                    <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
+                    <div className="gradient-border shadow-lg bg-surface rounded-3xl p-10 max-w-xl mx-auto">
                         <h1>Analyzing your resume...</h1>
-                        <p className="text-gray-500 mt-4">This usually takes a few seconds. This page will update automatically.</p>
+                        <p className="text-ink-soft mt-4">This usually takes a few seconds. This page will update automatically.</p>
                     </div>
                 </section>
                 <Footer />
@@ -116,9 +116,9 @@ const Resume = () => {
             <main className="min-h-screen flex flex-col">
                 <Navbar />
                 <section className="main-section py-24 text-center flex-1">
-                    <div className="gradient-border shadow-lg bg-white rounded-3xl p-10 max-w-xl mx-auto">
+                    <div className="gradient-border shadow-lg bg-surface rounded-3xl p-10 max-w-xl mx-auto">
                         <h1>Analysis failed</h1>
-                        <p className="text-gray-500 mt-4">Something went wrong analyzing this resume. Please try uploading it again.</p>
+                        <p className="text-ink-soft mt-4">Something went wrong analyzing this resume. Please try uploading it again.</p>
                         <Link to="/upload" className="primary-button mt-6 inline-block">
                             Upload a new resume
                         </Link>
@@ -147,9 +147,9 @@ const Resume = () => {
                         <div className="flex flex-col gap-3">
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                 <div>
-                                    <p className="text-sm uppercase tracking-[0.3em] text-gray-500">Resume Review</p>
+                                    <p className="text-sm uppercase tracking-[0.3em] text-ink-soft">Resume Review</p>
                                     <h1 className="text-3xl sm:text-4xl font-bold break-words">{companyName || "Untitled"}</h1>
-                                    <p className="text-lg text-gray-600">{jobTitle}</p>
+                                    <p className="text-lg text-ink-soft">{jobTitle}</p>
                                 </div>
                                 <ScoreCircle score={feedback.overallScore} />
                             </div>
@@ -163,16 +163,16 @@ const Resume = () => {
 
                         <div className="grid gap-6">
                             {sections.map((section) => (
-                                <div key={section.title} className="bg-white rounded-3xl p-6 shadow-sm">
+                                <div key={section.title} className="bg-surface rounded-3xl p-6 shadow-sm">
                                     <div className="flex items-center justify-between mb-4">
                                         <h2 className="text-xl font-semibold">{section.title}</h2>
-                                        <span className="text-sm text-gray-500">Score {section.data.score}</span>
+                                        <span className="text-sm text-ink-soft">Score {section.data.score}</span>
                                     </div>
                                     <div className="space-y-4">
                                         {section.data.tips.map((tip, index) => (
-                                            <div key={index} className="rounded-2xl border border-slate-200 p-4">
+                                            <div key={index} className="rounded-2xl border border-line p-4">
                                                 <p className="font-semibold">{tip.tip}</p>
-                                                {"explanation" in tip && <p className="text-sm text-gray-600 mt-2">{(tip as { explanation: string }).explanation}</p>}
+                                                {"explanation" in tip && <p className="text-sm text-ink-soft mt-2">{(tip as { explanation: string }).explanation}</p>}
                                             </div>
                                         ))}
                                     </div>
@@ -182,7 +182,7 @@ const Resume = () => {
                     </div>
 
                     <aside className="space-y-6">
-                        <div className="bg-white rounded-3xl p-6 shadow-sm">
+                        <div className="bg-surface rounded-3xl p-6 shadow-sm">
                             <h2 className="text-lg font-semibold mb-4">Resume Actions</h2>
                             <Link to="/upload" className="primary-button w-full text-center">
                                 Upload a new resume
@@ -192,9 +192,9 @@ const Resume = () => {
                             </Link>
                         </div>
 
-                        <div className="bg-white rounded-3xl p-6 shadow-sm">
+                        <div className="bg-surface rounded-3xl p-6 shadow-sm">
                             <h3 className="font-semibold">Tips</h3>
-                            <p className="text-sm text-gray-500 mt-3">
+                            <p className="text-sm text-ink-soft mt-3">
                                 Use this page to compare scores across categories and see where your resume can improve.
                             </p>
                         </div>
