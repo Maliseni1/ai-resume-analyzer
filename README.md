@@ -3,9 +3,10 @@
 AI-powered resume analyzer. Upload a resume, get instant feedback on ATS
 compatibility, tone, structure, content, and skill matching.
 
-Built with React Router 7, Tailwind CSS 4, and Supabase (auth, database,
-storage). The project is run on free-tier infrastructure, so architecture
-choices favor services with generous free plans over cost or scale.
+Built with React Router 7, Tailwind CSS 4, Supabase (auth, database,
+storage), and Groq (AI analysis). The project is run on free-tier
+infrastructure, so architecture choices favor services with generous free
+plans over cost or scale.
 
 ## Status
 
@@ -13,13 +14,17 @@ This project is under active rebuild. Rough roadmap:
 
 - [x] **Phase 0 — Operational fixes**: env var wiring, dead routes, repo
   hygiene, baseline legal pages.
-- [ ] **Phase 1 — Architecture**: finalize the Supabase schema (resumes,
-  feedback, trial state) and pick a free-tier AI provider for resume
-  analysis.
+- [x] **Phase 1 — Architecture**: Supabase schema for resumes (`supabase/schema.sql`)
+  and Groq as the AI provider (`app/lib/groq.server.ts`). Trial state continues
+  to live on the Supabase auth user's metadata, no separate table needed.
 - [ ] **Phase 2 — Core feature**: real upload → parse → AI analysis →
   persisted, per-user dashboard (replacing the current mock data in
   `constants/index.ts`).
 - [ ] **Phase 3 — Polish**: navbar/user menu, toasts, dark mode, CI, tests.
+
+Everything here runs on free tiers: Supabase's free project plan and Groq's
+free API tier. Keep that in mind before picking models/features that assume
+paid-tier rate limits or storage.
 
 Docs are updated as each phase lands — this file, and the legal pages below,
 are the source of truth for current state, not an upfront spec.
@@ -51,8 +56,25 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-key
 4. (Optional, for "Continue with Google") enable the Google provider under
    **Authentication → Providers** in Supabase, and set the redirect URL to
    `<your-app-url>/auth/callback`.
+5. Open the **SQL Editor** in your Supabase project, paste the contents of
+   [`supabase/schema.sql`](./supabase/schema.sql), and run it. This creates
+   the `resumes` table (with row-level security) and a private `resumes`
+   storage bucket, scoped so each user can only read/write their own files.
 
-### 3. Run the dev server
+### 3. Set up Groq (free tier)
+
+1. Create a free account and API key at [console.groq.com](https://console.groq.com).
+2. Add it to `.env`:
+
+```
+GROQ_API_KEY=your-groq-api-key
+```
+
+This key is read server-side only (`app/lib/groq.server.ts`) and is never
+sent to the browser — don't rename it to `VITE_GROQ_API_KEY`, which would
+bundle it into client JS.
+
+### 4. Run the dev server
 
 ```bash
 npm run dev
@@ -72,6 +94,7 @@ npm run start       # serve the production build
 
 - [React Router 7](https://reactrouter.com/) (framework mode, SSR)
 - [Supabase](https://supabase.com/) — auth, Postgres database, file storage
+- [Groq](https://groq.com/) — AI resume analysis (`llama-3.3-70b-versatile`)
 - [Tailwind CSS 4](https://tailwindcss.com/)
 - [Zustand](https://github.com/pmndrs/zustand) for client state (auth store)
 - [pdfjs-dist](https://mozilla.github.io/pdf.js/) for client-side PDF parsing
@@ -88,8 +111,9 @@ docker run -p 3000:3000 --env-file .env resumind
 ### DIY
 
 Build with `npm run build`, then serve `build/server/index.js` with Node 20+.
-Make sure `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set at build
-time (they're inlined into the client bundle by Vite).
+`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` must be set at build time
+(they're inlined into the client bundle by Vite). `GROQ_API_KEY` only needs
+to be set at runtime, on the server.
 
 ## Legal
 
