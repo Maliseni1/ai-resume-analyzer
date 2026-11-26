@@ -1,11 +1,12 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
-import {resumes} from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
-import {useAuthStore} from "~/lib/auth";
-import {Link, useNavigate} from "react-router";
-import {useEffect} from "react";
+import { useAuthStore } from "~/lib/auth";
+import { getSupabaseClient } from "~/lib/supabase";
+import { listUserResumes } from "~/lib/resumes";
+import { Link, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -20,6 +21,9 @@ export default function Dashboard() {
     const { user, isLoading, trialDaysLeft, checkAuthStatus } = useAuthStore();
     const navigate = useNavigate();
 
+    const [resumes, setResumes] = useState<Resume[]>([]);
+    const [resumesLoading, setResumesLoading] = useState(true);
+
     useEffect(() => {
         checkAuthStatus();
     }, []);
@@ -29,6 +33,14 @@ export default function Dashboard() {
             navigate('/signin?next=/dashboard');
         }
     }, [user, isLoading, navigate]);
+
+    useEffect(() => {
+        if (!user) return;
+        const supabase = getSupabaseClient();
+        listUserResumes(supabase, user.id)
+            .then(setResumes)
+            .finally(() => setResumesLoading(false));
+    }, [user]);
 
     const showTrialExpired = trialDaysLeft === 0;
 
@@ -53,11 +65,18 @@ export default function Dashboard() {
             <h2>Review your submissions and check AI-powered feedback.</h2>
         </div>
 
-      {resumes.length > 0 && (
+      {resumesLoading ? (
+          <p className="text-gray-500">Loading your resumes...</p>
+      ) : resumes.length > 0 ? (
           <div className="resumes-section">
               {resumes.map((resume) => (
                   <ResumeCard key={resume.id} resume={resume}/>
               ))}
+          </div>
+      ) : (
+          <div className="text-center">
+              <p className="text-gray-500 mb-4">You haven't uploaded a resume yet.</p>
+              <Link to="/upload" className="primary-button inline-block">Upload your first resume</Link>
           </div>
       )}
       </section>
