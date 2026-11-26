@@ -8,4 +8,7 @@ export default [
     route("/auth/callback", "routes/auth-callback.tsx"),
     route("/upload", "routes/upload.tsx"),
     route("/resume/:id", "routes/resume.tsx"),
+    route("/subscribe", "routes/subscribe.tsx"),
+    route("/privacy", "routes/privacy.tsx"),
+    route("/terms", "routes/terms.tsx"),
 ] satisfies RouteConfig;

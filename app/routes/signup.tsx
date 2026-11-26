@@ -130,6 +130,12 @@ const SignUp = () => {
                         <p className="text-center text-sm text-gray-500">
                             Already have an account? <Link to="/signin" className="text-blue-600 underline">Sign in</Link>
                         </p>
+                        <p className="text-center text-xs text-gray-400">
+                            By signing up, you agree to our{" "}
+                            <Link to="/terms" className="text-blue-600 underline">Terms of Service</Link>{" "}
+                            and{" "}
+                            <Link to="/privacy" className="text-blue-600 underline">Privacy Policy</Link>.
+                        </p>
                     </section>
                 </div>
             </div>

@@ -26,7 +26,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!isLoading && !user) {
-            navigate('/auth?next=/dashboard');
+            navigate('/signin?next=/dashboard');
         }
     }, [user, isLoading, navigate]);
 
