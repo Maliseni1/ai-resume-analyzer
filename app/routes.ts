@@ -9,6 +9,7 @@ export default [
     route("/upload", "routes/upload.tsx"),
     route("/resume/:id", "routes/resume.tsx"),
     route("/subscribe", "routes/subscribe.tsx"),
+    route("/api/analyze", "routes/api.analyze.ts"),
     route("/privacy", "routes/privacy.tsx"),
     route("/terms", "routes/terms.tsx"),
 ] satisfies RouteConfig;
