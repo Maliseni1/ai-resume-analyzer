@@ -27,7 +27,12 @@ export async function action({ request }: Route.ActionArgs) {
         });
         return Response.json({ feedback });
     } catch (err) {
+        console.error("api.analyze failed:", err);
+        // Defense in depth: never forward an unbounded/raw internal error
+        // message to the client, even if something upstream didn't clean
+        // its own error before throwing.
         const message = err instanceof Error ? err.message : "Analysis failed";
-        return Response.json({ error: message }, { status: 502 });
+        const safeMessage = message.length > 200 ? "Analysis failed. Please try again." : message;
+        return Response.json({ error: safeMessage }, { status: 502 });
     }
 }

@@ -5,6 +5,7 @@ import Groq from "groq-sdk";
 // React Router to strip this module out of the client build entirely.
 
 const MODEL = "openai/gpt-oss-120b";
+const VISION_MODEL = "qwen/qwen3.8-27b";
 
 let client: Groq | null = null;
 
@@ -47,6 +48,8 @@ export interface AnalyzeResumeInput {
     jobDescription?: string;
 }
 
+const MAX_ATTEMPTS = 2;
+
 export async function analyzeResume({
     resumeText,
     jobTitle,
@@ -62,24 +65,131 @@ export async function analyzeResume({
         .filter(Boolean)
         .join("\n\n");
 
-    const completion = await groq.chat.completions.create({
-        model: MODEL,
-        temperature: 0.4,
-        response_format: { type: "json_object" },
-        messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            { role: "user", content: userPrompt },
-        ],
-    });
+    let lastError: unknown;
 
-    const raw = completion.choices[0]?.message?.content;
-    if (!raw) {
-        throw new Error("Groq returned an empty response");
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        try {
+            const completion = await groq.chat.completions.create({
+                model: MODEL,
+                temperature: 0.4,
+                response_format: { type: "json_object" },
+                messages: [
+                    { role: "system", content: SYSTEM_PROMPT },
+                    { role: "user", content: userPrompt },
+                ],
+            });
+
+            const raw = completion.choices[0]?.message?.content;
+            if (!raw) {
+                throw new Error("Groq returned an empty response");
+            }
+
+            const feedback = JSON.parse(raw) as Feedback;
+            assertFeedbackShape(feedback);
+            return feedback;
+        } catch (err) {
+            // Never let a provider error (which can embed the model's raw,
+            // unfinished output -- e.g. Groq's `failed_generation` field on
+            // a json_validate_failed error) reach the client. Log the real
+            // details server-side and retry once; this class of failure is
+            // usually transient.
+            lastError = err;
+            console.error(`analyzeResume attempt ${attempt} failed:`, err);
+        }
     }
 
-    const feedback = JSON.parse(raw) as Feedback;
-    assertFeedbackShape(feedback);
-    return feedback;
+    throw new Error(
+        lastError instanceof SyntaxError
+            ? "The AI returned a response we couldn't read. Please try again."
+            : "Resume analysis failed. Please try again in a moment."
+    );
+}
+
+const JOB_EXTRACT_SYSTEM_PROMPT = `You extract structured information from a
+job posting, given either as raw text or an image of the posting. Respond
+with ONLY a single JSON object, no prose before or after it, matching
+exactly this shape:
+
+{
+  "companyName": string | null,
+  "jobTitle": string | null,
+  "jobDescription": string
+}
+
+"jobDescription" should be the full body of the posting (responsibilities,
+requirements, qualifications) cleaned into plain readable text -- omit
+navigation, boilerplate, and "how to apply" instructions. Use null for
+companyName or jobTitle if you genuinely can't find them. Always include a
+jobDescription, summarizing if necessary.`;
+
+export interface ExtractJobInfoInput {
+    text?: string;
+    imageDataUrl?: string;
+}
+
+export interface ExtractedJobInfo {
+    companyName?: string;
+    jobTitle?: string;
+    jobDescription: string;
+}
+
+export async function extractJobInfo({ text, imageDataUrl }: ExtractJobInfoInput): Promise<ExtractedJobInfo> {
+    if (!text && !imageDataUrl) {
+        throw new Error("Provide either text or an image to extract from.");
+    }
+
+    const groq = getClient();
+    let lastError: unknown;
+
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+        try {
+            const completion = await groq.chat.completions.create({
+                model: imageDataUrl ? VISION_MODEL : MODEL,
+                temperature: 0.2,
+                response_format: { type: "json_object" },
+                messages: [
+                    { role: "system", content: JOB_EXTRACT_SYSTEM_PROMPT },
+                    imageDataUrl
+                        ? {
+                              role: "user",
+                              content: [
+                                  { type: "text", text: "Extract the job posting details from this image." },
+                                  { type: "image_url", image_url: { url: imageDataUrl } },
+                              ],
+                          }
+                        : { role: "user", content: `Job posting text:\n${text}` },
+                ],
+            });
+
+            const raw = completion.choices[0]?.message?.content;
+            if (!raw) {
+                throw new Error("Groq returned an empty response");
+            }
+
+            return assertJobInfoShape(JSON.parse(raw));
+        } catch (err) {
+            lastError = err;
+            console.error(`extractJobInfo attempt ${attempt} failed:`, err);
+        }
+    }
+
+    throw new Error(
+        lastError instanceof SyntaxError
+            ? "The AI returned a response we couldn't read. Please try again."
+            : "Couldn't read that file. Please try again or fill the form in manually."
+    );
+}
+
+function assertJobInfoShape(value: unknown): ExtractedJobInfo {
+    const v = value as Partial<ExtractedJobInfo> | null;
+    if (!v || typeof v.jobDescription !== "string") {
+        throw new Error("Groq response is missing jobDescription");
+    }
+    return {
+        companyName: typeof v.companyName === "string" ? v.companyName : undefined,
+        jobTitle: typeof v.jobTitle === "string" ? v.jobTitle : undefined,
+        jobDescription: v.jobDescription,
+    };
 }
 
 function assertFeedbackShape(value: unknown): value is Feedback {

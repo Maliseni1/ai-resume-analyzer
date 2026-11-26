@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
 import FloatingInput from "~/components/FloatingInput";
+import { useToastStore } from "~/lib/toast";
 
 export const meta = () => ([
     { title: 'Sign Up - Resumind' },
@@ -12,13 +13,12 @@ export const meta = () => ([
 
 const SignUp = () => {
     const { signUp, signInWithOAuth, checkAuthStatus } = useAuthStore();
+    const addToast = useToastStore((state) => state.addToast);
     const navigate = useNavigate();
-    
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState<string | null>(null);
-    const [successMsg, setSuccessMsg] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -30,35 +30,32 @@ const SignUp = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(null);
-        setSuccessMsg(null);
 
         if (password !== confirmPassword) {
-            setError("Passwords do not match");
+            addToast("Passwords do not match", "error");
             return;
         }
 
         if (password.length < 6) {
-            setError("Password must be at least 6 characters");
+            addToast("Password must be at least 6 characters", "error");
             return;
         }
 
         setIsLoading(true);
         const { error } = await signUp(email, password);
         setIsLoading(false);
-        
+
         if (error) {
-            setError(error.message);
+            addToast(error.message, "error");
         } else {
-            setSuccessMsg("Check your email to confirm your account!");
+            addToast("Check your email to confirm your account!", "success");
         }
     };
 
     const handleGoogleSignUp = async () => {
-        setError(null);
         const { error } = await signInWithOAuth("google");
         if (error) {
-            setError(error.message);
+            addToast(error.message, "error");
         }
     };
 
@@ -126,8 +123,6 @@ const SignUp = () => {
                                 required
                             />
                             {passwordsMismatch && <p className="text-red-500 text-sm -mt-2">Passwords do not match</p>}
-                            {error && <p className="text-red-500 text-sm">{error}</p>}
-                            {successMsg && <p className="text-green-500 text-sm">{successMsg}</p>}
                             <button type="submit" className="primary-button" disabled={isLoading || !canSubmit}>
                                 {isLoading ? "Creating account..." : "Sign Up"}
                             </button>

@@ -102,6 +102,21 @@ export async function failResumeAnalysis(
     await supabase.from("resumes").update({ status: "failed" }).eq("id", id);
 }
 
+export async function deleteResume(
+    supabase: SupabaseClient,
+    resume: Pick<Resume, "id" | "resumePath" | "imagePath">
+): Promise<void> {
+    const paths = [resume.resumePath, resume.imagePath].filter(
+        (path): path is string => Boolean(path)
+    );
+    if (paths.length > 0) {
+        await supabase.storage.from("resumes").remove(paths);
+    }
+
+    const { error } = await supabase.from("resumes").delete().eq("id", resume.id);
+    if (error) throw error;
+}
+
 export async function getSignedResumeUrl(
     supabase: SupabaseClient,
     path: string | null
