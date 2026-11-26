@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
 import FloatingInput from "~/components/FloatingInput";
+import { useToastStore } from "~/lib/toast";
 
 export const meta = () => ([
     { title: 'Sign In - Resumind' },
@@ -12,13 +13,13 @@ export const meta = () => ([
 
 const SignIn = () => {
     const { signIn, signInWithOAuth, checkAuthStatus, user } = useAuthStore();
+    const addToast = useToastStore((state) => state.addToast);
     const navigate = useNavigate();
     const location = useLocation();
     const next = new URLSearchParams(location.search).get('next') ?? '/dashboard';
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -33,22 +34,20 @@ const SignIn = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(null);
         setIsLoading(true);
-        
+
         const { error } = await signIn(email, password);
         setIsLoading(false);
-        
+
         if (error) {
-            setError(error.message);
+            addToast(error.message, "error");
         }
     };
 
     const handleGoogleSignIn = async () => {
-        setError(null);
         const { error } = await signInWithOAuth("google");
         if (error) {
-            setError(error.message);
+            addToast(error.message, "error");
         }
     };
 
@@ -105,7 +104,6 @@ const SignIn = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            {error && <p className="text-red-500 text-sm">{error}</p>}
                             <button type="submit" className="primary-button" disabled={isLoading}>
                                 {isLoading ? "Signing in..." : "Sign In"}
                             </button>

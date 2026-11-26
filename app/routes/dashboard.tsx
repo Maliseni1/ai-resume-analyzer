@@ -58,7 +58,7 @@ export default function Dashboard() {
         </div>
       )}
       <section className="main-section flex-1">
-        <div className="page-heading py-16">
+        <div className="page-heading py-8">
             <h1>
                 Track Your Applications & Resume Ratings
             </h1>
@@ -68,11 +68,18 @@ export default function Dashboard() {
       {resumesLoading ? (
           <p className="text-ink-soft">Loading your resumes...</p>
       ) : resumes.length > 0 ? (
-          <div className="resumes-section">
-              {resumes.map((resume) => (
-                  <ResumeCard key={resume.id} resume={resume}/>
-              ))}
-          </div>
+          <>
+              <Link to="/upload" className="primary-button w-fit px-6">Upload another resume</Link>
+              <div className="resumes-section">
+                  {resumes.map((resume) => (
+                      <ResumeCard
+                          key={resume.id}
+                          resume={resume}
+                          onDeleted={(id) => setResumes((prev) => prev.filter((r) => r.id !== id))}
+                      />
+                  ))}
+              </div>
+          </>
       ) : (
           <div className="text-center">
               <p className="text-ink-soft mb-4">You haven't uploaded a resume yet.</p>
