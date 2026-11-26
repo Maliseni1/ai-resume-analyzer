@@ -1,87 +1,100 @@
-# Welcome to React Router!
+# Resumind
 
-A modern, production-ready template for building full-stack React applications using React Router.
+AI-powered resume analyzer. Upload a resume, get instant feedback on ATS
+compatibility, tone, structure, content, and skill matching.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Built with React Router 7, Tailwind CSS 4, and Supabase (auth, database,
+storage). The project is run on free-tier infrastructure, so architecture
+choices favor services with generous free plans over cost or scale.
 
-## Features
+## Status
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+This project is under active rebuild. Rough roadmap:
 
-## Getting Started
+- [x] **Phase 0 — Operational fixes**: env var wiring, dead routes, repo
+  hygiene, baseline legal pages.
+- [ ] **Phase 1 — Architecture**: finalize the Supabase schema (resumes,
+  feedback, trial state) and pick a free-tier AI provider for resume
+  analysis.
+- [ ] **Phase 2 — Core feature**: real upload → parse → AI analysis →
+  persisted, per-user dashboard (replacing the current mock data in
+  `constants/index.ts`).
+- [ ] **Phase 3 — Polish**: navbar/user menu, toasts, dark mode, CI, tests.
 
-### Installation
+Docs are updated as each phase lands — this file, and the legal pages below,
+are the source of truth for current state, not an upfront spec.
 
-Install the dependencies:
+## Getting started
+
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### Development
+### 2. Set up Supabase (free tier)
 
-Start the development server with HMR:
+1. Create a free project at [supabase.com](https://supabase.com).
+2. In the dashboard, go to **Settings → API** and copy the **Project URL**
+   and **anon public** key.
+3. Copy `.env.example` to `.env` and fill in both values:
+
+```bash
+cp .env.example .env
+```
+
+```
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
+```
+
+4. (Optional, for "Continue with Google") enable the Google provider under
+   **Authentication → Providers** in Supabase, and set the redirect URL to
+   `<your-app-url>/auth/callback`.
+
+### 3. Run the dev server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The app runs at `http://localhost:5173`.
 
-## Building for Production
-
-Create a production build:
+### Other scripts
 
 ```bash
-npm run build
+npm run typecheck   # react-router typegen + tsc
+npm run build       # production build
+npm run start       # serve the production build
 ```
+
+## Tech stack
+
+- [React Router 7](https://reactrouter.com/) (framework mode, SSR)
+- [Supabase](https://supabase.com/) — auth, Postgres database, file storage
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Zustand](https://github.com/pmndrs/zustand) for client state (auth store)
+- [pdfjs-dist](https://mozilla.github.io/pdf.js/) for client-side PDF parsing
 
 ## Deployment
 
-### Docker Deployment
-
-To build and run using Docker:
+### Docker
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+docker build -t resumind .
+docker run -p 3000:3000 --env-file .env resumind
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### DIY
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+Build with `npm run build`, then serve `build/server/index.js` with Node 20+.
+Make sure `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set at build
+time (they're inlined into the client bundle by Vite).
 
-### DIY Deployment
+## Legal
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)
 
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+These are early-stage template pages, not reviewed by a lawyer — see the
+disclaimer on each page before relying on them for a real launch.

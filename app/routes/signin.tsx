@@ -1,6 +1,6 @@
 import { useAuthStore } from "~/lib/auth";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
 
 export const meta = () => ([
@@ -12,7 +12,9 @@ export const meta = () => ([
 const SignIn = () => {
     const { signIn, signInWithOAuth, checkAuthStatus, user } = useAuthStore();
     const navigate = useNavigate();
-    
+    const location = useLocation();
+    const next = new URLSearchParams(location.search).get('next') ?? '/dashboard';
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
@@ -24,9 +26,9 @@ const SignIn = () => {
 
     useEffect(() => {
         if (user) {
-            navigate('/dashboard');
+            navigate(next);
         }
-    }, [user, navigate]);
+    }, [user, next, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
