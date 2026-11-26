@@ -2,6 +2,7 @@ import { useAuthStore } from "~/lib/auth";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
+import FloatingInput from "~/components/FloatingInput";
 
 export const meta = () => ([
     { title: 'Sign Up - Resumind' },
@@ -23,6 +24,9 @@ const SignUp = () => {
     useEffect(() => {
         checkAuthStatus();
     }, []);
+
+    const passwordsMismatch = confirmPassword.length > 0 && password !== confirmPassword;
+    const canSubmit = password.length >= 6 && confirmPassword.length > 0 && !passwordsMismatch;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,16 +63,16 @@ const SignUp = () => {
     };
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <nav className="navbar">
                 <Link to="/" className="flex items-center gap-4">
-                    <p className="text-2xl font-bold text-gradient">RESUMIND</p>
+                    <p className="text-2xl font-bold text-white">RESUMIND</p>
                 </Link>
             </nav>
 
-            <div className="flex-1 flex items-center justify-center py-16">
-                <div className="gradient-border shadow-lg">
-                    <section className="flex flex-col gap-6 bg-white rounded-2xl p-10 max-w-md w-full">
+            <div className="flex-1 flex items-center justify-center py-16 px-4">
+                <div className="gradient-border shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <section className="flex flex-col gap-6 bg-white rounded-2xl p-6 sm:p-10 max-w-md w-full">
                         <div className="flex flex-col items-center gap-2 text-center">
                             <h1>Create Account</h1>
                             <h2>Start your 3-day free trial</h2>
@@ -95,46 +99,48 @@ const SignUp = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                            <input
+                            <FloatingInput
+                                id="signup-email"
+                                label="Email"
                                 type="email"
-                                placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="input-field"
                                 required
                             />
-                            <input
+                            <FloatingInput
+                                id="signup-password"
+                                label="Password"
                                 type="password"
-                                placeholder="Password (min 6 characters)"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="input-field"
                                 required
                                 minLength={6}
                             />
-                            <input
+                            <p className="text-xs text-ink-soft -mt-2">Minimum 6 characters</p>
+                            <FloatingInput
+                                id="signup-confirm-password"
+                                label="Confirm Password"
                                 type="password"
-                                placeholder="Confirm Password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="input-field"
                                 required
                             />
+                            {passwordsMismatch && <p className="text-red-500 text-sm -mt-2">Passwords do not match</p>}
                             {error && <p className="text-red-500 text-sm">{error}</p>}
                             {successMsg && <p className="text-green-500 text-sm">{successMsg}</p>}
-                            <button type="submit" className="primary-button" disabled={isLoading}>
+                            <button type="submit" className="primary-button" disabled={isLoading || !canSubmit}>
                                 {isLoading ? "Creating account..." : "Sign Up"}
                             </button>
                         </form>
 
                         <p className="text-center text-sm text-gray-500">
-                            Already have an account? <Link to="/signin" className="text-blue-600 underline">Sign in</Link>
+                            Already have an account? <Link to="/signin" className="link">Sign in</Link>
                         </p>
                         <p className="text-center text-xs text-gray-400">
                             By signing up, you agree to our{" "}
-                            <Link to="/terms" className="text-blue-600 underline">Terms of Service</Link>{" "}
+                            <Link to="/terms" className="link">Terms of Service</Link>{" "}
                             and{" "}
-                            <Link to="/privacy" className="text-blue-600 underline">Privacy Policy</Link>.
+                            <Link to="/privacy" className="link">Privacy Policy</Link>.
                         </p>
                     </section>
                 </div>

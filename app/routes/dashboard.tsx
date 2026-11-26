@@ -45,7 +45,7 @@ export default function Dashboard() {
     const showTrialExpired = trialDaysLeft === 0;
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Navbar />
       {showTrialExpired && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-center">

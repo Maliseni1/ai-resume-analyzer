@@ -17,7 +17,7 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 
 const Privacy = () => {
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <Navbar />
             <section className="main-section flex-1">
                 <div className="page-heading py-10">
@@ -98,7 +98,7 @@ const Privacy = () => {
 
                         <Section title="9. Contact">
                             <p>Questions about this policy? Email us at{" "}
-                                <a href="mailto:hello@chizalabs.com" className="text-blue-600 underline">
+                                <a href="mailto:hello@chizalabs.com" className="link">
                                     hello@chizalabs.com
                                 </a>.
                             </p>
@@ -113,7 +113,7 @@ const Privacy = () => {
                     </div>
                 </div>
 
-                <Link to="/terms" className="text-blue-600 underline mt-6">
+                <Link to="/terms" className="link mt-6">
                     Read our Terms of Service
                 </Link>
             </section>

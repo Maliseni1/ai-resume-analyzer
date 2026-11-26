@@ -2,6 +2,7 @@ import { useAuthStore } from "~/lib/auth";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
+import FloatingInput from "~/components/FloatingInput";
 
 export const meta = () => ([
     { title: 'Sign In - Resumind' },
@@ -52,16 +53,16 @@ const SignIn = () => {
     };
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col">
             <nav className="navbar">
                 <Link to="/" className="flex items-center gap-4">
-                    <p className="text-2xl font-bold text-gradient">RESUMIND</p>
+                    <p className="text-2xl font-bold text-white">RESUMIND</p>
                 </Link>
             </nav>
 
-            <div className="flex-1 flex items-center justify-center py-16">
-                <div className="gradient-border shadow-lg">
-                    <section className="flex flex-col gap-6 bg-white rounded-2xl p-10 max-w-md w-full">
+            <div className="flex-1 flex items-center justify-center py-16 px-4">
+                <div className="gradient-border shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <section className="flex flex-col gap-6 bg-white rounded-2xl p-6 sm:p-10 max-w-md w-full">
                         <div className="flex flex-col items-center gap-2 text-center">
                             <h1>Welcome Back</h1>
                             <h2>Sign in to your account</h2>
@@ -88,20 +89,20 @@ const SignIn = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                            <input
+                            <FloatingInput
+                                id="signin-email"
+                                label="Email"
                                 type="email"
-                                placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="input-field"
                                 required
                             />
-                            <input
+                            <FloatingInput
+                                id="signin-password"
+                                label="Password"
                                 type="password"
-                                placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="input-field"
                                 required
                             />
                             {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -111,7 +112,7 @@ const SignIn = () => {
                         </form>
 
                         <p className="text-center text-sm text-gray-500">
-                            Don't have an account? <Link to="/signup" className="text-blue-600 underline">Sign up</Link>
+                            Don't have an account? <Link to="/signup" className="link">Sign up</Link>
                         </p>
                     </section>
                 </div>
