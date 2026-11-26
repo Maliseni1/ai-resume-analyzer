@@ -180,7 +180,7 @@ export async function extractJobInfo({ text, imageDataUrl }: ExtractJobInfoInput
     );
 }
 
-function assertJobInfoShape(value: unknown): ExtractedJobInfo {
+export function assertJobInfoShape(value: unknown): ExtractedJobInfo {
     const v = value as Partial<ExtractedJobInfo> | null;
     if (!v || typeof v.jobDescription !== "string") {
         throw new Error("Groq response is missing jobDescription");
@@ -192,7 +192,7 @@ function assertJobInfoShape(value: unknown): ExtractedJobInfo {
     };
 }
 
-function assertFeedbackShape(value: unknown): value is Feedback {
+export function assertFeedbackShape(value: unknown): value is Feedback {
     const categories = ["ATS", "toneAndStyle", "content", "structure", "skills"] as const;
     const v = value as Partial<Feedback> | null;
 

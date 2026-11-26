@@ -5,7 +5,7 @@ const GREEN_HUE = 120;
 const LOW_CUTOFF = 40;
 const HIGH_CUTOFF = 90;
 
-function scoreToColor(score: number): string {
+export function scoreToColor(score: number): string {
     const clamped = Math.max(0, Math.min(100, score));
     let hue: number;
     if (clamped <= LOW_CUTOFF) {
