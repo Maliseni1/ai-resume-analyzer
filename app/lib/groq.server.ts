@@ -4,7 +4,7 @@ import Groq from "groq-sdk";
 // inline it into the client bundle. The `.server.ts` suffix also tells
 // React Router to strip this module out of the client build entirely.
 
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 
 let client: Groq | null = null;
 

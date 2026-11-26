@@ -38,7 +38,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   trialDaysLeft: null,
 
   signIn: async (email: string, password: string) => {
-    const { error, data } = await getSupabaseAuth().auth.signInWithPassword({
+    const { error, data } = await getSupabaseAuth().signInWithPassword({
       email,
       password,
     });
@@ -51,7 +51,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const trialEnd = new Date();
       trialEnd.setDate(trialEnd.getDate() + TRIAL_DAYS);
       
-      await getSupabaseAuth().auth.updateUser({
+      await getSupabaseAuth().updateUser({
         data: { trial_end_date: trialEnd.toISOString() }
       });
       
@@ -66,7 +66,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const trialEnd = new Date();
     trialEnd.setDate(trialEnd.getDate() + TRIAL_DAYS);
     
-    const { error } = await getSupabaseAuth().auth.signUp({
+    const { error } = await getSupabaseAuth().signUp({
       email,
       password,
       options: {
@@ -78,7 +78,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signInWithOAuth: async (provider: Provider) => {
-    const { error } = await getSupabaseAuth().auth.signInWithOAuth({
+    const { error } = await getSupabaseAuth().signInWithOAuth({
       provider,
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
@@ -93,20 +93,30 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signOut: async () => {
-    await getSupabaseAuth().auth.signOut();
+    await getSupabaseAuth().signOut();
     set({ user: null, trialDaysLeft: null });
   },
 
   refreshUser: async () => {
-    const { data: { user } } = await getSupabaseAuth().auth.getUser();
-    const trialDaysLeft = getTrialDaysLeft(user);
-    set({ user, trialDaysLeft });
+    try {
+      const { data: { user }, error } = await getSupabaseAuth().getUser();
+      if (error) throw error;
+      set({ user, trialDaysLeft: getTrialDaysLeft(user) });
+    } catch (err) {
+      console.error("refreshUser failed:", err);
+      set({ user: null, trialDaysLeft: null });
+    }
   },
 
   checkAuthStatus: async () => {
     set({ isLoading: true });
-    const { data: { user } } = await getSupabaseAuth().auth.getUser();
-    const trialDaysLeft = getTrialDaysLeft(user);
-    set({ user, trialDaysLeft, isLoading: false });
+    try {
+      const { data: { user }, error } = await getSupabaseAuth().getUser();
+      if (error) throw error;
+      set({ user, trialDaysLeft: getTrialDaysLeft(user), isLoading: false });
+    } catch (err) {
+      console.error("checkAuthStatus failed:", err);
+      set({ user: null, trialDaysLeft: null, isLoading: false });
+    }
   },
 }));

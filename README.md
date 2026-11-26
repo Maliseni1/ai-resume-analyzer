@@ -94,7 +94,7 @@ npm run start       # serve the production build
 
 - [React Router 7](https://reactrouter.com/) (framework mode, SSR)
 - [Supabase](https://supabase.com/) — auth, Postgres database, file storage
-- [Groq](https://groq.com/) — AI resume analysis (`llama-3.3-70b-versatile`)
+- [Groq](https://groq.com/) — AI resume analysis (`openai/gpt-oss-120b`)
 - [Tailwind CSS 4](https://tailwindcss.com/)
 - [Zustand](https://github.com/pmndrs/zustand) for client state (auth store)
 - [pdfjs-dist](https://mozilla.github.io/pdf.js/) for client-side PDF parsing
