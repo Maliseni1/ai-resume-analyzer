@@ -1,7 +1,11 @@
 # Resumind
 
+[![CI](https://github.com/Maliseni1/ai-resume-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Maliseni1/ai-resume-analyzer/actions/workflows/ci.yml)
+
 AI-powered resume analyzer. Upload a resume, get instant feedback on ATS
-compatibility, tone, structure, content, and skill matching.
+compatibility, tone, structure, content, and skill matching — optionally
+tailored to a specific job, which you can fill in by hand or auto-fill by
+uploading the job posting itself (PDF, DOCX, or an image/screenshot).
 
 Built with React Router 7, Tailwind CSS 4, Supabase (auth, database,
 storage), and Groq (AI analysis). The project is run on free-tier
@@ -10,17 +14,18 @@ plans over cost or scale.
 
 ## Status
 
-This project is under active rebuild. Rough roadmap:
-
 - [x] **Phase 0 — Operational fixes**: env var wiring, dead routes, repo
   hygiene, baseline legal pages.
 - [x] **Phase 1 — Architecture**: Supabase schema for resumes (`supabase/schema.sql`)
   and Groq as the AI provider (`app/lib/groq.server.ts`). Trial state continues
   to live on the Supabase auth user's metadata, no separate table needed.
-- [ ] **Phase 2 — Core feature**: real upload → parse → AI analysis →
-  persisted, per-user dashboard (replacing the current mock data in
-  `constants/index.ts`).
-- [ ] **Phase 3 — Polish**: navbar/user menu, toasts, dark mode, CI, tests.
+- [x] **Phase 2 — Core feature**: real upload → parse → AI analysis →
+  persisted, per-user dashboard. Includes deleting a resume and
+  auto-filling the job title/description/company from an uploaded job
+  posting file.
+- [x] **Phase 3 — Polish**: Navy & Gold theme + dark mode, fixed navbar with
+  a user menu, toast notifications, a branded splash screen, CI, and a
+  starter test suite (`npm test`).
 
 Everything here runs on free tiers: Supabase's free project plan and Groq's
 free API tier. Keep that in mind before picking models/features that assume
@@ -86,18 +91,34 @@ The app runs at `http://localhost:5173`.
 
 ```bash
 npm run typecheck   # react-router typegen + tsc
+npm test            # vitest, run once (CI uses this)
 npm run build       # production build
 npm run start       # serve the production build
 ```
+
+## Testing & CI
+
+`npm test` runs the Vitest suite (`*.test.ts` files next to the code they
+cover) — mostly pure logic: score-color thresholds, feedback/job-info shape
+validation, the DB row → `Resume` mapping, trial day math, and the toast/theme
+stores. It intentionally doesn't hit Supabase or Groq.
+
+GitHub Actions (`.github/workflows/ci.yml`) runs `typecheck`, `test`, and
+`build` on every push to `main` and every pull request. No repo secrets are
+needed for CI — missing Supabase/Groq env vars don't fail the build, they
+just fall back to a placeholder client at runtime.
 
 ## Tech stack
 
 - [React Router 7](https://reactrouter.com/) (framework mode, SSR)
 - [Supabase](https://supabase.com/) — auth, Postgres database, file storage
-- [Groq](https://groq.com/) — AI resume analysis (`openai/gpt-oss-120b`)
+- [Groq](https://groq.com/) — AI resume analysis (`openai/gpt-oss-120b`) and
+  job-posting image extraction (`qwen/qwen3.8-27b`, vision-capable)
 - [Tailwind CSS 4](https://tailwindcss.com/)
-- [Zustand](https://github.com/pmndrs/zustand) for client state (auth store)
+- [Zustand](https://github.com/pmndrs/zustand) for client state (auth, theme, toast stores)
 - [pdfjs-dist](https://mozilla.github.io/pdf.js/) for client-side PDF parsing
+- [mammoth](https://github.com/mwilliamson/mammoth.js) for client-side `.docx` text extraction (lazy-loaded)
+- [Vitest](https://vitest.dev/) for tests
 
 ## Deployment
 

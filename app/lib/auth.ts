@@ -18,7 +18,7 @@ interface AuthState {
 
 const getSupabaseAuth = () => getSupabaseClient().auth;
 
-const getTrialDaysLeft = (user: User | null): number | null => {
+export const getTrialDaysLeft = (user: User | null): number | null => {
   if (!user) return null;
   
   const trialEndDate = user.user_metadata?.trial_end_date;
