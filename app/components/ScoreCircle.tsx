@@ -1,3 +1,23 @@
+// Red below 40, green above 90, a smooth spectrum in between -- the
+// standard "worst to best" traffic-light read for a score gauge.
+const RED_HUE = 0;
+const GREEN_HUE = 120;
+const LOW_CUTOFF = 40;
+const HIGH_CUTOFF = 90;
+
+function scoreToColor(score: number): string {
+    const clamped = Math.max(0, Math.min(100, score));
+    let hue: number;
+    if (clamped <= LOW_CUTOFF) {
+        hue = RED_HUE;
+    } else if (clamped >= HIGH_CUTOFF) {
+        hue = GREEN_HUE;
+    } else {
+        hue = ((clamped - LOW_CUTOFF) / (HIGH_CUTOFF - LOW_CUTOFF)) * GREEN_HUE;
+    }
+    return `hsl(${hue}, 70%, 45%)`;
+}
+
 const ScoreCircle = ({ score = 75 }: { score: number }) => {
     const radius = 40;
     const stroke = 8;
@@ -5,6 +25,7 @@ const ScoreCircle = ({ score = 75 }: { score: number }) => {
     const circumference = 2 * Math.PI * normalizedRadius;
     const progress = score / 100;
     const strokeDashoffset = circumference * (1 - progress);
+    const progressColor = scoreToColor(score);
 
     return (
         <div className="relative w-[100px] h-[100px]">
@@ -28,7 +49,7 @@ const ScoreCircle = ({ score = 75 }: { score: number }) => {
                     cx="50"
                     cy="50"
                     r={normalizedRadius}
-                    style={{ stroke: "var(--color-gold)" }}
+                    style={{ stroke: progressColor }}
                     strokeWidth={stroke}
                     fill="transparent"
                     strokeDasharray={circumference}

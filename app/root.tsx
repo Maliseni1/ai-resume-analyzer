@@ -12,6 +12,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import { inject } from "@vercel/analytics";
 import Splash from "~/components/Splash";
+import ToastContainer from "~/components/ToastContainer";
 
 inject();
 
@@ -64,6 +65,7 @@ export default function App() {
     <>
       <Splash visible={splashVisible} />
       <Outlet />
+      <ToastContainer />
     </>
   );
 }

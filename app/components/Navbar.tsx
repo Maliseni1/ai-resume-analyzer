@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { useAuthStore } from "~/lib/auth";
 import { useThemeStore } from "~/lib/theme";
+import { useToastStore } from "~/lib/toast";
 import { useEffect } from "react";
 
 const SunIcon = () => (
@@ -19,6 +20,7 @@ const MoonIcon = () => (
 const Navbar = () => {
     const { user, checkAuthStatus, signOut } = useAuthStore();
     const { theme, init, toggleTheme } = useThemeStore();
+    const addToast = useToastStore((state) => state.addToast);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +30,7 @@ const Navbar = () => {
 
     const handleSignOut = async () => {
         await signOut();
+        addToast("Signed out", "success");
         navigate("/");
     };
 

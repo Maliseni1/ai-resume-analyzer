@@ -20,10 +20,10 @@ export default function Home() {
       <Navbar />
       <section className="main-section flex-1">
         <div className="page-heading py-16">
-          <h1>
+          <h1 className="hero-heading">
             AI-Powered Resume Analysis
           </h1>
-          <h2>Get instant feedback on your resume and land your dream job.</h2>
+          <h2 className="hero-subheading">Get instant feedback on your resume and land your dream job.</h2>
         </div>
 
         <div className="max-w-4xl mx-auto">
