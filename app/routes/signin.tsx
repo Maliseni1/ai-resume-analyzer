@@ -5,11 +5,13 @@ import Footer from "~/components/Footer";
 import FloatingInput from "~/components/FloatingInput";
 import LogoMark from "~/components/LogoMark";
 import { useToastStore } from "~/lib/toast";
+import { defaultMeta } from "~/lib/site";
 
 export const meta = () => ([
     { title: 'Sign In - Eukleya' },
     { name: "description", content: "Sign in to your Eukleya account to continue analyzing your resume." },
     { name: "robots", content: "noindex" },
+    ...defaultMeta(),
 ])
 
 const SignIn = () => {

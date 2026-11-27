@@ -1,11 +1,13 @@
 import { Link } from "react-router";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
+import { defaultMeta } from "~/lib/site";
 
 export const meta = () => ([
     { title: 'Subscribe - Eukleya' },
     { name: "description", content: "Eukleya paid plans are coming soon." },
     { name: "robots", content: "noindex" },
+    ...defaultMeta(),
 ]);
 
 const Subscribe = () => {

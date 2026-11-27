@@ -5,11 +5,18 @@ import Footer from "~/components/Footer";
 import FloatingInput from "~/components/FloatingInput";
 import LogoMark from "~/components/LogoMark";
 import { useToastStore } from "~/lib/toast";
+import { absoluteUrl, defaultMeta } from "~/lib/site";
 
+// Unlike /signin (a login form with no SEO value), /signup is a real
+// conversion landing page -- worth indexing and is in sitemap.xml.
 export const meta = () => ([
     { title: 'Sign Up - Eukleya' },
     { name: "description", content: "Create your free Eukleya account and get 3 days of AI-powered resume analysis. No credit card required." },
-    { name: "robots", content: "noindex" },
+    ...defaultMeta(),
+    { property: "og:title", content: "Sign Up - Eukleya" },
+    { property: "og:description", content: "Create your free Eukleya account and get 3 days of AI-powered resume analysis. No credit card required." },
+    { property: "og:url", content: absoluteUrl("/signup") },
+    { tagName: "link", rel: "canonical", href: absoluteUrl("/signup") },
 ])
 
 const SignUp = () => {
