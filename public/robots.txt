@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /upload
+Disallow: /resume/
+Disallow: /subscribe
+Disallow: /auth/
+Disallow: /api/
+
+Sitemap: https://eukleya.chizalabs.com/sitemap.xml

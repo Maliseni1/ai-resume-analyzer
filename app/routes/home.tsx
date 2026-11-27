@@ -2,6 +2,7 @@ import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import { Link } from "react-router";
+import { SITE_NAME, SITE_URL, absoluteUrl, defaultMeta } from "~/lib/site";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -9,8 +10,29 @@ export function meta({}: Route.MetaArgs) {
     { title: "Eukleya - AI Resume Analyzer | Free 3-Day Trial" },
     { name: "description", content: "Let your work speak well of you. Get instant AI-powered feedback on your resume -- ATS score, tone, structure, and content. Start your free 3-day trial today!" },
     { name: "keywords", content: "resume analyzer, AI resume review, ATS score, job application, resume feedback" },
+    ...defaultMeta(),
     { property: "og:title", content: "Eukleya - AI Resume Analyzer" },
     { property: "og:description", content: "Let your work speak well of you. Get instant AI-powered feedback on your resume. Start your free 3-day trial!" },
+    { property: "og:url", content: SITE_URL },
+    { tagName: "link", rel: "canonical", href: SITE_URL },
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: SITE_NAME,
+        url: SITE_URL,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        description: "AI-powered resume feedback: ATS compatibility, tone, structure, content, and skill matching, optionally tailored to a specific job.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+          description: "Free 3-day trial, no credit card required",
+        },
+        image: absoluteUrl("/og-image.png"),
+      },
+    },
   ];
 }
 

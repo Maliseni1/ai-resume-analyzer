@@ -13,6 +13,7 @@ import "./app.css";
 import { inject } from "@vercel/analytics";
 import Splash from "~/components/Splash";
 import ToastContainer from "~/components/ToastContainer";
+import { SITE_TAGLINE, defaultMeta } from "~/lib/site";
 
 inject();
 
@@ -73,14 +74,15 @@ export default function App() {
   );
 }
 
+// NOTE: this only renders on a route that doesn't define its own meta() --
+// every real page route in app/routes/ does, so this is a fallback of last
+// resort, not something actually shown today. Each page route is
+// responsible for spreading ...defaultMeta() itself (see app/lib/site.ts).
 export const meta: Route.MetaFunction = () => [
   { title: "Eukleya - AI Resume Analyzer" },
-  { name: "description", content: "Let your work speak well of you. Get AI-powered feedback on your resume -- ATS score, tone, structure, and content." },
+  { name: "description", content: `${SITE_TAGLINE} Get AI-powered feedback on your resume -- ATS score, tone, structure, and content.` },
   { name: "keywords", content: "resume, AI, resume analyzer, ATS, job application, career" },
-  { property: "og:title", content: "Eukleya - AI Resume Analyzer" },
-  { property: "og:description", content: "Let your work speak well of you. Get AI-powered feedback on your resume -- ATS score, tone, structure, and content." },
-  { property: "og:type", content: "website" },
-  { name: "twitter:card", content: "summary_large_image" },
+  ...defaultMeta(),
 ];
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
