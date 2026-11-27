@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Footer from "~/components/Footer";
 import FloatingInput from "~/components/FloatingInput";
+import LogoMark from "~/components/LogoMark";
 import { useToastStore } from "~/lib/toast";
 
 export const meta = () => ([
-    { title: 'Sign In - Resumind' },
-    { name: "description", content: "Sign in to your Resumind account to continue analyzing your resume." },
+    { title: 'Sign In - Eukleya' },
+    { name: "description", content: "Sign in to your Eukleya account to continue analyzing your resume." },
     { name: "robots", content: "noindex" },
 ])
 
@@ -54,8 +55,9 @@ const SignIn = () => {
     return (
         <main className="min-h-screen flex flex-col">
             <nav className="navbar">
-                <Link to="/" className="flex items-center gap-4">
-                    <p className="text-2xl font-bold text-white">RESUMIND</p>
+                <Link to="/" className="flex items-center gap-2">
+                    <LogoMark className="w-8 h-8" />
+                    <p className="text-2xl font-bold text-white">EUKLEYA</p>
                 </Link>
             </nav>
 

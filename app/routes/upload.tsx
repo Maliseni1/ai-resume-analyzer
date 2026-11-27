@@ -17,7 +17,7 @@ const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingm
 const MAX_JOB_FILE_BYTES = 4 * 1024 * 1024; // keep comfortably under serverless body-size limits
 
 export const meta = () => ([
-    { title: "Upload Resume - Resumind" },
+    { title: "Upload Resume - Eukleya" },
     { name: "description", content: "Upload your resume and get instant AI-powered feedback. Check ATS scores, tone, and content analysis." },
 ]);
 

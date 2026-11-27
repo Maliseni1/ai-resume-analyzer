@@ -6,11 +6,11 @@ import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind - AI Resume Analyzer | Free 3-Day Trial" },
-    { name: "description", content: "Get instant AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job. Start your free 3-day trial today!" },
+    { title: "Eukleya - AI Resume Analyzer | Free 3-Day Trial" },
+    { name: "description", content: "Let your work speak well of you. Get instant AI-powered feedback on your resume -- ATS score, tone, structure, and content. Start your free 3-day trial today!" },
     { name: "keywords", content: "resume analyzer, AI resume review, ATS score, job application, resume feedback" },
-    { property: "og:title", content: "Resumind - AI Resume Analyzer" },
-    { property: "og:description", content: "Get instant AI-powered feedback on your resume. Start your free 3-day trial!" },
+    { property: "og:title", content: "Eukleya - AI Resume Analyzer" },
+    { property: "og:description", content: "Let your work speak well of you. Get instant AI-powered feedback on your resume. Start your free 3-day trial!" },
   ];
 }
 
@@ -21,9 +21,9 @@ export default function Home() {
       <section className="main-section flex-1">
         <div className="page-heading py-16">
           <h1 className="hero-heading">
-            AI-Powered Resume Analysis
+            Let your work speak well of you.
           </h1>
-          <h2 className="hero-subheading">Get instant feedback on your resume and land your dream job.</h2>
+          <h2 className="hero-subheading">AI-powered resume feedback — ATS score, tone, structure, and skills, in seconds.</h2>
         </div>
 
         <div className="max-w-4xl mx-auto">
