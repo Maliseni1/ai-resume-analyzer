@@ -39,6 +39,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Site-wide, so it belongs in Layout directly -- a route's own
+            meta() never reaches other routes, and this must be on every
+            page regardless of route for Google to verify ownership. */}
+        <meta name="google-site-verification" content="7j_yLh6PFQHqOsCpRMTinpUZ-6brF86qW2bPQBgqiGU" />
         <Meta />
         <Links />
         <script
