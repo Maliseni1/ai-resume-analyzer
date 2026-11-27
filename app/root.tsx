@@ -17,6 +17,9 @@ import ToastContainer from "~/components/ToastContainer";
 inject();
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.ico", sizes: "any" },
+  { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -71,11 +74,11 @@ export default function App() {
 }
 
 export const meta: Route.MetaFunction = () => [
-  { title: "Resumind - AI Resume Analyzer" },
-  { name: "description", content: "Get AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job." },
+  { title: "Eukleya - AI Resume Analyzer" },
+  { name: "description", content: "Let your work speak well of you. Get AI-powered feedback on your resume -- ATS score, tone, structure, and content." },
   { name: "keywords", content: "resume, AI, resume analyzer, ATS, job application, career" },
-  { property: "og:title", content: "Resumind - AI Resume Analyzer" },
-  { property: "og:description", content: "Get AI-powered feedback on your resume. Check ATS scores, improve tone and style, and land your dream job." },
+  { property: "og:title", content: "Eukleya - AI Resume Analyzer" },
+  { property: "og:description", content: "Let your work speak well of you. Get AI-powered feedback on your resume -- ATS score, tone, structure, and content." },
   { property: "og:type", content: "website" },
   { name: "twitter:card", content: "summary_large_image" },
 ];

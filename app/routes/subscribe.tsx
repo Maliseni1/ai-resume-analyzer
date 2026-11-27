@@ -3,8 +3,8 @@ import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 
 export const meta = () => ([
-    { title: 'Subscribe - Resumind' },
-    { name: "description", content: "Resumind paid plans are coming soon." },
+    { title: 'Subscribe - Eukleya' },
+    { name: "description", content: "Eukleya paid plans are coming soon." },
     { name: "robots", content: "noindex" },
 ]);
 

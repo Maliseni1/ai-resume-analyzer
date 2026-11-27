@@ -1,6 +1,8 @@
-# Resumind
+# Eukleya
 
-[![CI](https://github.com/Maliseni1/ai-resume-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Maliseni1/ai-resume-analyzer/actions/workflows/ci.yml)
+*Let your work speak well of you.*
+
+[![CI](https://github.com/Maliseni1/eukleya/actions/workflows/ci.yml/badge.svg)](https://github.com/Maliseni1/eukleya/actions/workflows/ci.yml)
 
 AI-powered resume analyzer. Upload a resume, get instant feedback on ATS
 compatibility, tone, structure, content, and skill matching — optionally
@@ -23,9 +25,9 @@ plans over cost or scale.
   persisted, per-user dashboard. Includes deleting a resume and
   auto-filling the job title/description/company from an uploaded job
   posting file.
-- [x] **Phase 3 — Polish**: Navy & Gold theme + dark mode, fixed navbar with
-  a user menu, toast notifications, a branded splash screen, CI, and a
-  starter test suite (`npm test`).
+- [x] **Phase 3 — Polish**: Eukleya brand theme (navy/paper/red) + dark mode,
+  fixed navbar with a user menu, toast notifications, a branded splash
+  screen, CI, and a starter test suite (`npm test`).
 
 Everything here runs on free tiers: Supabase's free project plan and Groq's
 free API tier. Keep that in mind before picking models/features that assume
@@ -125,8 +127,8 @@ just fall back to a placeholder client at runtime.
 ### Docker
 
 ```bash
-docker build -t resumind .
-docker run -p 3000:3000 --env-file .env resumind
+docker build -t eukleya .
+docker run -p 3000:3000 --env-file .env eukleya
 ```
 
 ### DIY
