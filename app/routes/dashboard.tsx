@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Dashboard - Resumind" },
+    { title: "Dashboard - Eukleya" },
     { name: "description", content: "View and manage your resume analysis results. Track your ATS scores and improvement tips." },
     { name: "robots", content: "noindex" },
   ];

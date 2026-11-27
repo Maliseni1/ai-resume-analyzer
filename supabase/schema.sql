@@ -1,4 +1,4 @@
--- Resumind database schema
+-- Eukleya database schema
 --
 -- Run this once in your Supabase project's SQL Editor
 -- (Dashboard -> SQL Editor -> New query -> paste -> Run).

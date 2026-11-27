@@ -10,21 +10,22 @@
     --font-sans: "Mona Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-    /* Navy & Gold: deep navy for chrome/primary actions, soft fog
-       background, muted gold reserved for standout accents. */
+    /* Eukleya brand palette: Navy #1C2A4A / Paper #F3F0E9 / Red #D9462B.
+       Navy drives chrome/primary actions, paper is the page background,
+       red is reserved for standout accents (navbar CTA, avatar). */
     --color-ink: #121a2b;
     --color-ink-soft: #5b6472;
-    --color-navy: #16233e;
-    --color-navy-dark: #0e1726;
-    --color-gold: #cc9a44;
-    --color-gold-dark: #b3862e;
-    --color-bg: #f4f5f7;
+    --color-navy: #1c2a4a;
+    --color-navy-dark: #121b30;
+    --color-accent: #d9462b;
+    --color-accent-dark: #b83a22;
+    --color-bg: #f3f0e9;
     --color-surface: #ffffff;
     --color-line: #dce1e8;
     /* Link text needs its own token: navy itself is too dark to read as
-       text on a dark background, but it must stay navy (not gold) in
-       light mode so gold stays reserved for standout accents only. */
-    --color-link: #16233e;
+       text on a dark background, but it must stay navy (not red) in
+       light mode so the accent stays reserved for standout moments only. */
+    --color-link: #1c2a4a;
 
     --color-badge-green: #d5faf1;
     --color-badge-red: #f9e3e2;
@@ -45,8 +46,8 @@
     /* Navy buttons/navbar need to brighten in dark mode -- the original
        navy barely differs from the near-black page background, so
        primary buttons stopped popping against it. */
-    --color-navy: #30508c;
-    --color-navy-dark: #25406f;
+    --color-navy: #3a5590;
+    --color-navy-dark: #2c4272;
 }
 
 html,
@@ -108,7 +109,7 @@ form {
         @apply bg-red-600 text-white rounded-full px-4 py-2 cursor-pointer w-full font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
     }
     .navbar-cta {
-        @apply bg-gold text-navy-dark rounded-full px-4 py-2 font-semibold hover:bg-gold-dark transition-colors w-fit;
+        @apply bg-accent text-white rounded-full px-4 py-2 font-semibold hover:bg-accent-dark transition-colors w-fit;
     }
     .user-menu summary {
         list-style: none;
