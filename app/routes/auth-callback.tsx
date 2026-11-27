@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { getSupabaseClient } from "~/lib/supabase";
 
 export const meta = () => ([
-    { title: 'Resumind | Auth Callback' },
+    { title: 'Eukleya | Auth Callback' },
 ])
 
 const AuthCallback = () => {

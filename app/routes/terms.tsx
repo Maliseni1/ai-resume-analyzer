@@ -3,8 +3,8 @@ import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 
 export const meta = () => ([
-    { title: 'Terms of Service - Resumind' },
-    { name: "description", content: "The terms that govern your use of Resumind." },
+    { title: 'Terms of Service - Eukleya' },
+    { name: "description", content: "The terms that govern your use of Eukleya." },
     { name: "robots", content: "noindex" },
 ]);
 
@@ -28,13 +28,13 @@ const Terms = () => {
                 <div className="gradient-border shadow-lg max-w-3xl mx-auto w-full">
                     <div className="bg-surface rounded-2xl p-8">
                         <p className="text-ink-soft">
-                            These Terms govern your use of Resumind, a product operated by Chiza Labs.
+                            These Terms govern your use of Eukleya, a product operated by Chiza Labs.
                             By creating an account or using the service, you agree to these Terms.
                         </p>
 
                         <Section title="1. The service">
-                            <p>Resumind lets you upload a resume and receive AI-generated feedback on its
-                            ATS compatibility, tone, structure, content, and skill matching. Resumind is
+                            <p>Eukleya lets you upload a resume and receive AI-generated feedback on its
+                            ATS compatibility, tone, structure, content, and skill matching. Eukleya is
                             offered on a free trial basis; paid plans, if introduced, will be described at
                             the time they become available.</p>
                         </Section>
@@ -68,18 +68,18 @@ const Terms = () => {
                         </Section>
 
                         <Section title="6. Service availability">
-                            <p>Resumind is an early-stage product run on free/low-cost infrastructure
+                            <p>Eukleya is an early-stage product run on free/low-cost infrastructure
                             tiers. We don't guarantee uninterrupted availability and may modify or
                             discontinue features with reasonable notice.</p>
                         </Section>
 
                         <Section title="7. Termination">
-                            <p>You may stop using Resumind and delete your account at any time. We may
+                            <p>You may stop using Eukleya and delete your account at any time. We may
                             suspend or terminate accounts that violate these Terms.</p>
                         </Section>
 
                         <Section title="8. Disclaimer and limitation of liability">
-                            <p>Resumind is provided "as is" without warranties of any kind. To the maximum
+                            <p>Eukleya is provided "as is" without warranties of any kind. To the maximum
                             extent permitted by law, Chiza Labs is not liable for indirect, incidental, or
                             consequential damages arising from your use of the service.</p>
                         </Section>

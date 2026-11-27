@@ -3,8 +3,8 @@ import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
 
 export const meta = () => ([
-    { title: 'Privacy Policy - Resumind' },
-    { name: "description", content: "How Resumind collects, uses, and protects your data." },
+    { title: 'Privacy Policy - Eukleya' },
+    { name: "description", content: "How Eukleya collects, uses, and protects your data." },
     { name: "robots", content: "noindex" },
 ]);
 
@@ -28,8 +28,8 @@ const Privacy = () => {
                 <div className="gradient-border shadow-lg max-w-3xl mx-auto w-full">
                     <div className="bg-surface rounded-2xl p-8">
                         <p className="text-ink-soft">
-                            Resumind ("we", "us", "our") is operated by Chiza Labs. This policy explains
-                            what personal data we collect when you use Resumind, why we collect it, and
+                            Eukleya ("we", "us", "our") is operated by Chiza Labs. This policy explains
+                            what personal data we collect when you use Eukleya, why we collect it, and
                             how you can control it.
                         </p>
 
@@ -54,7 +54,7 @@ const Privacy = () => {
                         </Section>
 
                         <Section title="3. Third-party processors">
-                            <p>We rely on the following service providers to operate Resumind. Each
+                            <p>We rely on the following service providers to operate Eukleya. Each
                             processes a limited slice of your data under their own privacy and security
                             terms:</p>
                             <ul className="list-disc pl-6 space-y-1">
@@ -86,12 +86,12 @@ const Privacy = () => {
                         </Section>
 
                         <Section title="7. Children">
-                            <p>Resumind is not directed at children under 16, and we do not knowingly
+                            <p>Eukleya is not directed at children under 16, and we do not knowingly
                             collect data from them.</p>
                         </Section>
 
                         <Section title="8. Changes to this policy">
-                            <p>We may update this policy as Resumind evolves. We'll update the "Last
+                            <p>We may update this policy as Eukleya evolves. We'll update the "Last
                             updated" date above when we do, and for material changes we'll notify you by
                             email.</p>
                         </Section>
