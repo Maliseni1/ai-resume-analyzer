@@ -12,6 +12,7 @@ import { useToastStore } from "~/lib/toast";
 import FloatingInput from "~/components/FloatingInput";
 import FloatingTextarea from "~/components/FloatingTextarea";
 import LoadingOverlay from "~/components/LoadingOverlay";
+import { defaultMeta } from "~/lib/site";
 
 const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 const MAX_JOB_FILE_BYTES = 4 * 1024 * 1024; // keep comfortably under serverless body-size limits
@@ -19,6 +20,8 @@ const MAX_JOB_FILE_BYTES = 4 * 1024 * 1024; // keep comfortably under serverless
 export const meta = () => ([
     { title: "Upload Resume - Eukleya" },
     { name: "description", content: "Upload your resume and get instant AI-powered feedback. Check ATS scores, tone, and content analysis." },
+    { name: "robots", content: "noindex" },
+    ...defaultMeta(),
 ]);
 
 const Upload = () => {

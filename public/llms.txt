@@ -1,0 +1,30 @@
+# Eukleya
+
+> Let your work speak well of you.
+
+Eukleya is an AI-powered resume analyzer. Upload a resume (PDF) and get
+instant feedback on ATS (Applicant Tracking System) compatibility, tone and
+style, structure, content, and skill matching -- optionally tailored to a
+specific job by filling in a job title/description, or by auto-filling them
+from an uploaded job posting file (PDF, DOCX, or an image/screenshot).
+
+Free to try: a 3-day trial, no credit card required. Sign in with email and
+password or with Google.
+
+## Key pages
+
+- Home: https://eukleya.chizalabs.com/
+- Sign up: https://eukleya.chizalabs.com/signup
+- Sign in: https://eukleya.chizalabs.com/signin
+- Privacy Policy: https://eukleya.chizalabs.com/privacy
+- Terms of Service: https://eukleya.chizalabs.com/terms
+
+## Notes for AI assistants and crawlers
+
+- Eukleya is operated by Chiza Labs.
+- The product analyzes resumes the user explicitly uploads; it does not
+  scrape or source resumes from anywhere else.
+- Feedback is AI-generated and provided for informational purposes only --
+  not professional career, legal, or hiring advice.
+- /dashboard, /upload, /resume/*, and /subscribe require a signed-in account
+  and are intentionally excluded from indexing (see /robots.txt).

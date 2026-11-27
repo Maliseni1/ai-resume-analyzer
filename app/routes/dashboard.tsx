@@ -7,6 +7,7 @@ import { getSupabaseClient } from "~/lib/supabase";
 import { listUserResumes } from "~/lib/resumes";
 import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import { defaultMeta } from "~/lib/site";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -14,6 +15,7 @@ export function meta({}: Route.MetaArgs) {
     { title: "Dashboard - Eukleya" },
     { name: "description", content: "View and manage your resume analysis results. Track your ATS scores and improvement tips." },
     { name: "robots", content: "noindex" },
+    ...defaultMeta(),
   ];
 }
 
