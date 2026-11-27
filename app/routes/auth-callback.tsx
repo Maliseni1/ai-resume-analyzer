@@ -4,6 +4,7 @@ import { getSupabaseClient } from "~/lib/supabase";
 
 export const meta = () => ([
     { title: 'Eukleya | Auth Callback' },
+    { name: "robots", content: "noindex" },
 ])
 
 const AuthCallback = () => {

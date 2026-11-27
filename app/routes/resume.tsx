@@ -6,11 +6,13 @@ import ScoreCircle from "~/components/ScoreCircle";
 import { useAuthStore } from "~/lib/auth";
 import { getSupabaseClient } from "~/lib/supabase";
 import { getResumeById, getSignedResumeUrl } from "~/lib/resumes";
+import { defaultMeta } from "~/lib/site";
 
 export const meta = () => ([
     { title: "Resume Analysis - Eukleya" },
     { name: "description", content: "View detailed AI feedback on your resume. See ATS scores, tone analysis, content tips, and skill matching." },
     { name: "robots", content: "noindex" },
+    ...defaultMeta(),
 ]);
 
 const POLL_INTERVAL_MS = 4000;

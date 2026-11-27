@@ -1,11 +1,15 @@
 import { Link } from "react-router";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
+import { absoluteUrl, defaultMeta } from "~/lib/site";
 
 export const meta = () => ([
     { title: 'Terms of Service - Eukleya' },
     { name: "description", content: "The terms that govern your use of Eukleya." },
-    { name: "robots", content: "noindex" },
+    ...defaultMeta(),
+    { property: "og:title", content: "Terms of Service - Eukleya" },
+    { property: "og:url", content: absoluteUrl("/terms") },
+    { tagName: "link", rel: "canonical", href: absoluteUrl("/terms") },
 ]);
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
